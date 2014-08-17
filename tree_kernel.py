@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString
 from networkx.algorithms.traversal.depth_first_search import dfs_tree
+from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 raw = "<html><head><title></title></head><body><p><p><br><p></body></html>"
@@ -96,4 +97,4 @@ for i,subtree in enumerate(all_subtrees):
         w.append(np.sum(np.array(map(lambda x: nx.is_isomorphic(subtree,x,node_match=label_check),subtrees_H),dtype=float)))
 
 
-print np.dot(v,w)-1
+print cosine_similarity(v,w)
